@@ -19,10 +19,10 @@ local function onCharacterAdded(character)
     end)
 end
 
--- Quando o personagem spawnar
+-- hi
 player.CharacterAdded:Connect(onCharacterAdded)
 
--- Caso já esteja spawnado
+-- hello
 if player.Character then
     onCharacterAdded(player.Character)
 end
